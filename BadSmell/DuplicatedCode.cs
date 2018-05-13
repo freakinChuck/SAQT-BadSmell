@@ -23,6 +23,8 @@ namespace BadSmell
                 DuplicatedCode.DoSomething();
             }
 
+            DuplicatedCode.SomeSeparatorCode();
+
             if (number < 10)
             {
                 DuplicatedCode.DoSomething();
@@ -35,6 +37,11 @@ namespace BadSmell
             {
                 DuplicatedCode.DoSomething();
             }
+        }
+
+        private static void SomeSeparatorCode()
+        {
+            Console.WriteLine("****************************************************!");
         }
 
         public static void DoSomething()
