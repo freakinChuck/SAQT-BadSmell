@@ -2,11 +2,12 @@
 
 namespace BadSmell
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            DuplicatedCode.FooBar();
+            Console.ReadKey();
         }
     }
 }
