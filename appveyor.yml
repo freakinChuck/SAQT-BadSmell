@@ -1,0 +1,29 @@
+# version format
+version: 0.0.{build}
+
+# build with VS17
+image: Visual Studio 2017
+
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
+platform: Any CPU
+
+# to add several platforms to build matrix:
+#platform:
+#  - x86
+#  - Any CPU
+
+# to add several configurations to build matrix:
+#configuration:
+#  - Debug
+#  - Release
+# build Configuration, i.e. Debug, Release, etc.
+configuration: Release
+
+
+before_build:
+  - nuget restore BadSmell.sln
+build_script:
+  - choco install "msbuild-sonarqube-runner" -y
+  - SonarScanner.MSBuild.exe begin /k:"SAQT-BadSmell" /d:sonar.organization="freakinchuck-github" /d:sonar.host.url="https://sonarcloud.io" /d:"sonar.login=%SonarQubeToken%"
+  - msbuild "BadSmell.sln"
+  - SonarScanner.MSBuild.exe end /d:"sonar.login=%SonarQubeToken%"
